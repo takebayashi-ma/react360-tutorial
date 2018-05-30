@@ -4,17 +4,36 @@ import {
   StyleSheet,
   Text,
   View,
+  VrButton,
 } from 'react-360';
 
 export default class HelloWorld extends React.Component {
+
+  // Our component will keep track of this state
+  state = {
+    count: 0,
+  };
+
+  // This method increments our count, triggering a re-render
+  _incrementCount = () => {
+    this.setState({count: this.state.count + 1});
+  };
+
+  // Once the component mounts, run the increment method every second
+  componentDidMount() {
+    //setInterval(this._incrementCount, 1000);
+  }
+
   render() {
     return (
       <View style={styles.panel}>
-        <View style={styles.greetingBox}>
+        <VrButton
+          onClick={this._incrementCount}
+          style={styles.greetingBox}>
           <Text style={styles.greeting}>
-            Welcome to React 360
+            {`Count: ${this.state.count}`}
           </Text>
-        </View>
+        </VrButton>
       </View>
     );
   }
